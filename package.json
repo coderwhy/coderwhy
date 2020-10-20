@@ -1,0 +1,22 @@
+{
+  "name": "coderwhy",
+  "version": "1.0.0",
+  "description": "a front end helper tools",
+  "main": "index.js",
+  "bin": {
+    "coderwhy": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "commander": "^6.1.0",
+    "download-git-repo": "^3.0.2",
+    "ejs": "^3.1.5",
+    "open": "^7.3.0"
+  }
+}
