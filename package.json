@@ -9,7 +9,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["vue", "react", "CLI", "component"],
+  "keywords": [
+    "vue",
+    "react",
+    "CLI",
+    "component"
+  ],
   "author": "coderwhy",
   "license": "MIT",
   "homepage": "https://github.com/coderwhy/coderwhy",
