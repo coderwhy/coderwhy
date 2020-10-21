@@ -3,6 +3,12 @@
 
 > 想不起来其他名字，以这个命名吧~
 
+如何安装？
+
+```shell
+npm install coderwhy -g
+```
+
 ## 创建项目
 
 目前支持Vue，后期会支持React，Angular考虑中~
@@ -104,6 +110,12 @@ files.keys().filter(key => {
 ## `coderwhy`: A CLI to help you quickly build and develop front-end projects
 
 > Can't think of other names, so just use coderwhy~
+
+How to install？
+
+```shell
+npm install coderwhy -g
+```
 
 ## Create project
 
