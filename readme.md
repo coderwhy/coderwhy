@@ -99,3 +99,92 @@ files.keys().filter(key => {
 
 
 
+# Documentation
+
+## `coderwhy`: A CLI to help you quickly build and develop front-end projects
+
+> Can't think of other names, so just use coderwhy~
+
+## Create project
+
+Currently Vue is supported, React will be supported later, Angular is under consideration~
+
+The vue project module has been configured for you:
+
+- Common directory structure (you can modify on this basis)
+- vue.config.js (alias is configured, you can modify and configure more by yourself)
+- axios (network request axios installation and secondary packaging)
+- vue-router (router installation and configuration, in addition to dynamic loading of routing, detailed description later)
+- vuex (installation and configuration of vuex, there are also dynamic loading sub-modules, which will be described in detail later)
+
+Create project
+
+```shell
+coderwhy create your_project_name
+```
+
+Automatically pull project templates, install project dependencies, open browsers, `http://localhost:8080/`and automatically start projects
+
+## Project Development
+
+Project development currently provides three functions:
+
+- Create Vue components
+- Create a Vue page and configure routing
+- Create Vuex submodule
+
+### Create Vue components:
+
+```shell
+addcpn YourComponentName coderwhy # example coderwhy add NavBar, the default will be stored in src / components folder 
+coderwhy addcpn YourComponentName -d src / Pages and the / Home # specific file can also specify the destination folder
+```
+
+### Create a Vue page and configure routing
+
+```shell
+addPage YourPageName coderwhy # example coderwhy addpage Home, the default will put src / pages / home / Home.vue, and will create a src / Page / Home / router.js 
+coderwhy addPage YourPageName -d src / views # You can also specify a folder , But need to integrate routing manually
+```
+
+Why is the router.js file created:
+
+- `router.js`The file is one of the routing configurations;
+- Create the file `src/router/index.js`will be automatically loaded into the routing `routes`configuration, do not need to manually configured (if it is to configure their own folder requires manual configuration)
+
+`src/router/index.js`The following operations have been completed in:
+
+```js
+// Dynamically load all routing files in pages 
+const  files  =  require . Context ( '@/pages' ,  true ,  /router \. js $ / ) ; 
+const  routes  =  files . Keys ( ) . Map ( key  =>  { 
+  const  page  =  require ( '@/pages'  +  key . replace ( '.' ,  '' ) ) ; 
+  return  page.default;
+})
+```
+
+### Create Vuex submodule
+
+```shell
+addstore YourVuexChildModuleName coderwhy # example coderwhy addstore home, the default will put src / store / modules / home / index.js and types.js 
+coderwhy addstore YourVuexChildModuleName -d src / vuex / modules # You can also specify a folder
+```
+
+After the creation is completed, no manual configuration is required, and all sub-modules have been dynamically integrated:
+
+```js
+// 动态加载modules
+const modules = {}
+const files = require.context('./', true, /index\.js$/);
+files.keys().filter(key => {
+  if (key === './index.js') return false;
+  return true
+}).map(key => {  
+  // 获取名字
+  const modulePath = key.replace('./modules/', '');
+  const moduleName = modulePath.replace('/index.js', '');
+  const module = require(`${key}`);
+
+  modules[`${moduleName}`] = module.default;
+})
+```
